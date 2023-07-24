@@ -26,15 +26,6 @@ class FolderDataset(Dataset):
             tensor_image = self.transform(image)
 
         return tensor_image, tensor_image
-    
-    def __getbyindex__(self, idx):
-        img_loc = os.path.join(self.main_dir, self.all_imgs[idx])
-        return img_loc
-
-        if self.transform is not None:
-            tensor_image = self.transform(image)
-
-        return tensor_image, tensor_image, img_loc
 
 
 

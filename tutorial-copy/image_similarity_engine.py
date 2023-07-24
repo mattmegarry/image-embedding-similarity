@@ -27,6 +27,11 @@ def train_step(encoder, decoder, train_loader, loss_fn, optimizer, device):
         enc_output = encoder(train_img)
         # The output of encoder is input to decoder !
         dec_output = decoder(enc_output)
+
+        print(f"Encoder output shape: {enc_output.shape}")
+        print(f"Decoder output shape: {dec_output.shape}")
+        print(f"Target image shape: {target_img.shape}")
+
         
         # Decoder output is reconstructed image
         # Compute loss with it and orginal image which is target image.
