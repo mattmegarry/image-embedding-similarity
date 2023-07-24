@@ -1,3 +1,5 @@
+from torchvision import transforms
+
 images_dataset = FolderDataset("images", transform=transforms.ToTensor())
 image_to_show = 0
 
