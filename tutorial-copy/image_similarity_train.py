@@ -36,7 +36,7 @@ loss_fn = nn.MSELoss() # We use Mean squared loss which computes difference betw
 encoder = ConvEncoder() # Our encoder model
 decoder = ConvDecoder() # Our decoder model
 
-device = "cuda"  # GPU device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Shift models to GPU
 encoder.to(device)
