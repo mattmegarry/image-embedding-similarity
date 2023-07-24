@@ -1,7 +1,10 @@
 import torch
-from sklearn.neighbors import NearestNeighbors
+import torchvision.transforms as T
 
-def compute_similar_images(image, num_images, embedding, device):
+from sklearn.neighbors import NearestNeighbors
+from image_similarity_encoder_model import ConvEncoder
+
+def compute_similar_images(image, num_images, embedding):
     """
     Given an image and number of similar images to search.
     Returns the num_images closest neares images.
@@ -11,6 +14,10 @@ def compute_similar_images(image, num_images, embedding, device):
     embedding : A (num_images, embedding_dim) Embedding of images learnt from auto-encoder.
     device : "cuda" or "cpu" device.
     """
+
+    encoder = ConvEncoder()
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    encoder.to(device)
     
     image_tensor = T.ToTensor()(image)
     image_tensor = image_tensor.unsqueeze(0)
