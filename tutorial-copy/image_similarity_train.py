@@ -48,7 +48,7 @@ autoencoder_params = list(encoder.parameters()) + list(decoder.parameters())
 optimizer = optim.Adam(autoencoder_params, lr=1e-3) # Adam Optimizer
 
 # Time to Train !!!
-EPOCHS = 1
+EPOCHS = 30
 max_loss = float('inf')
 # Usual Training Loop
 for epoch in tqdm(range(EPOCHS)):
