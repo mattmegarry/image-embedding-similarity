@@ -5,6 +5,7 @@ import torchvision.transforms as T
 from tqdm import tqdm
 import torch.optim as optim
 import torch.nn as nn
+import numpy as np
 
 from image_similarity_dataset import FolderDataset
 from image_similarity_encoder_model import ConvEncoder
@@ -48,6 +49,7 @@ optimizer = optim.Adam(autoencoder_params, lr=1e-3) # Adam Optimizer
 
 # Time to Train !!!
 EPOCHS = 10
+max_loss = float('inf')
 # Usual Training Loop
 for epoch in tqdm(range(EPOCHS)):
         train_loss = train_step(encoder, decoder, train_loader, loss_fn, optimizer, device=device)
@@ -60,12 +62,13 @@ for epoch in tqdm(range(EPOCHS)):
 
         # Simple Best Model saving
         if val_loss < max_loss:
-            print("Validation Loss decreased, saving new best model")
+            print(f"Validation Loss decreased, saving new best model at epoch {epoch}")
+            max_loss = val_loss
             torch.save(encoder.state_dict(), "encoder_model.pt")
             torch.save(decoder.state_dict(), "decoder_model.pt")
 
 # Save the feature representations.
-EMBEDDING_SHAPE = (1, 256, 16, 16) # This we know from our encoder
+EMBEDDING_SHAPE = (1, 256, 8, 8) # This we know from our encoder - I changed this to 8 from 16 - why did that work!?
 
 # We need feature representations for complete dataset not just train and validation.
 # Hence we use full loader here.
