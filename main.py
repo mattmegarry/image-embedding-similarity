@@ -18,9 +18,9 @@ class FolderDataset(Dataset):
     def __len__(self):
         return len(self.all_imgs)
 
-    def __getitem__(self, idx):
+    def __getitem__(self, idx, conversion="RGB"):
         img_loc = os.path.join(self.main_dir, self.all_imgs[idx])
-        image = Image.open(img_loc).convert("L")
+        image = Image.open(img_loc).convert(conversion)
 
         if self.transform is not None:
             tensor_image = self.transform(image)
