@@ -28,6 +28,16 @@ class FolderDataset(Dataset):
 
         return tensor_image, tensor_image
 
-images = FolderDataset("images", transform=transforms.ToTensor())
+images_dataset = FolderDataset("images", transform=transforms.ToTensor())
+image_to_show = 2
 
-print(f"{len(images)} images ready for processing")
+print(f"\n\n{len(images_dataset)} images in the dataset\n\n")
+print(f"images_dataset is of type {type(images_dataset)}")
+
+print(f"Each element of the dataset is a {type(images_dataset[image_to_show])}\n\n")
+
+print(f"Each element of the tuple is a {type(images_dataset[image_to_show][0])}\n\n")
+print(f"The tensor values are (themselves vectors, tensors??): [channels, vertical_pixels, horizontal_pixels]: {images_dataset[0][0].shape}\n\n")
+
+print("All images seem to have been converted to the same size - as the smallest image? How did this happen? Are larger images being cropped?")
+
