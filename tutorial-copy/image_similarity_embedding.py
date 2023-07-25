@@ -22,8 +22,8 @@ def create_embedding(encoder, full_loader, embedding_dim, device):
             
             # Get encoder outputs and move outputs to cpu
             enc_output = encoder(train_img).cpu()
-            print(f"Embedding shape: {embedding.shape}") 
-            print(f"Encoder output shape: {enc_output.shape}")
+            # print(f"Embedding shape: {embedding.shape}") 
+            # print(f"Encoder output shape: {enc_output.shape}")
             # Keep adding these outputs to embeddings.
             embedding = torch.cat((embedding, enc_output), 0)
     

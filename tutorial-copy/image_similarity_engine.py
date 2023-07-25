@@ -28,9 +28,9 @@ def train_step(encoder, decoder, train_loader, loss_fn, optimizer, device):
         # The output of encoder is input to decoder !
         dec_output = decoder(enc_output)
 
-        print(f"Encoder output shape: {enc_output.shape}")
-        print(f"Decoder output shape: {dec_output.shape}")
-        print(f"Target image shape: {target_img.shape}")
+        #print(f"Encoder output shape: {enc_output.shape}")
+        #print(f"Decoder output shape: {dec_output.shape}")
+        #print(f"Target image shape: {target_img.shape}")ß
 
         
         # Decoder output is reconstructed image
