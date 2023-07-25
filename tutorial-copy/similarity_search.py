@@ -3,15 +3,31 @@ from PIL import Image
 import numpy as np
 import glob
 
+from utils import vertical_boundary_tensor_image, horizontal_boundary_tensor_image 
+
 from image_similarity_dataset import FolderDataset
 
 def main():
     embedding = np.load('data_embedding.npy')
-    image = Image.open('../images/obama_1.jpg').convert('L')
+    one_h_image = horizontal_boundary_tensor_image()
+    one_v_image = vertical_boundary_tensor_image()
+    h_predictions = compute_similar_images(one_h_image, 50, embedding)
+    v_predictions = compute_similar_images(one_v_image, 50, embedding)
+    print(h_predictions)
+    print(v_predictions)
+    
+
+if __name__ == '__main__':
+    main()
+
+""" 
+
+    embedding = np.load('data_embedding.npy')
+    image = Image.open('../images/obama_1.jpg').convert('RGB')
+    image = horizontal_boundary_tensor_image()
     indices_list = compute_similar_images(image, 10, embedding)
     dataset = FolderDataset('../images/')
     for i in indices_list[0]:
         print(dataset.all_imgs[i])
 
-if __name__ == '__main__':
-    main()
+ """

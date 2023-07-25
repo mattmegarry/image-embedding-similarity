@@ -19,8 +19,11 @@ def compute_similar_images(image, num_images, embedding):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     encoder.to(device)
     
-    image_tensor = T.ToTensor()(image)
-    image_tensor = image_tensor.unsqueeze(0)
+    """ image_tensor = T.ToTensor()(image) """
+    image_tensor = image
+    image_tensor = image_tensor.unsqueeze(0) 
+
+
     
     with torch.no_grad():
         image_embedding = encoder(image_tensor).cpu().detach().numpy()
