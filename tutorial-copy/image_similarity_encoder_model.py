@@ -8,7 +8,7 @@ class ConvEncoder(nn.Module):
     def __init__(self):
         super().__init__()
 
-        self.conv1 = nn.Conv2d(3, 16, (3, 3), padding=(1, 1))
+        self.conv1 = nn.Conv2d(1, 16, (3, 3), padding=(1, 1))
         self.relu1 = nn.ReLU(inplace=True)
         self.maxpool1 = nn.MaxPool2d((2, 2))
 

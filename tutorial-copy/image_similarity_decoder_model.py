@@ -19,7 +19,7 @@ class ConvDecoder(nn.Module):
         self.deconv4 = nn.ConvTranspose2d(32, 16, (2, 2), stride=(2, 2))
         self.relu4 = nn.ReLU(inplace=True)
 
-        self.deconv5 = nn.ConvTranspose2d(16, 3, (2, 2), stride=(2, 2))
+        self.deconv5 = nn.ConvTranspose2d(16, 1, (2, 2), stride=(2, 2))
         self.relu5 = nn.ReLU(inplace=True)
 
     def forward(self, x):

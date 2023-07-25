@@ -18,7 +18,7 @@ class FolderDataset(Dataset):
     def __len__(self):
         return len(self.all_imgs)
 
-    def __getitem__(self, idx, conversion="RGB"):
+    def __getitem__(self, idx, conversion="L"):
         img_loc = os.path.join(self.main_dir, self.all_imgs[idx])
         image = Image.open(img_loc).convert(conversion)
 
