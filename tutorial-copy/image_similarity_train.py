@@ -6,6 +6,7 @@ from tqdm import tqdm
 import torch.optim as optim
 import torch.nn as nn
 import numpy as np
+import random
 
 from image_similarity_dataset import FolderDataset
 from image_similarity_encoder_model import ConvEncoder
@@ -31,12 +32,58 @@ tensor = full_dataset[image_to_show][0]
 print(tensor)
 print(f"channels: {tensor.shape[0]}")
 print(f"vertical_pixels: {tensor.shape[1]}")
-print(f"horizontal_pixels: {tensor.shape[2]}")      
+print(f"horizontal_pixels: {tensor.shape[2]}")
 
+print(f"Each element is itself a {type(tensor[0][0][0])} and inside is a {type(tensor[0][0][0].item())}")
+
+h_boundary_image_ref = [[   [1, 1, 1], 
+                            [1, 1, 1],
+                            [0, 0, 0]   ]]
+
+v_boundary_image_ref = [[   [1, 1, 0],
+                            [1, 1, 0],
+                            [1, 1, 0]   ]]
+
+def vertical_boundary_tensor_image():
+    vertical_boundary_image = [[]] 
+    boundary_position = random.randint(1, 256)
+    for pixel_row in range(256):
+        vertical_boundary_image[0].append([])
+        for pixel_column in range(boundary_position):
+            if pixel_column < 128:
+                vertical_boundary_image[0][pixel_row].append(1)
+            else:
+                vertical_boundary_image[0][pixel_row].append(0)
+
+    vertical_boundary_tensor = torch.tensor(vertical_boundary_image)
+    return vertical_boundary_tensor
+
+def horizontal_boundary_tensor_image():
+    horizontal_boundary_image = [[]] 
+    boundary_position = random.randint(1, 256)
+    for pixel_row in range(256):
+        horizontal_boundary_image[0].append([])
+        if pixel_row < boundary_position:
+            for pixel_column in range(256):
+                horizontal_boundary_image[0][pixel_row].append(1)
+        else:
+            for pixel_column in range(256):
+                horizontal_boundary_image[0][pixel_row].append(0)
+
+    horizontal_boundary_tensor = torch.tensor(horizontal_boundary_image)
+    return horizontal_boundary_tensor
+
+vertical_boundary_tensor = vertical_boundary_tensor_image()
+horizontal_boundary_tensor = horizontal_boundary_tensor_image()
+
+print(vertical_boundary_tensor)
+print(vertical_boundary_tensor.shape)
+
+print(horizontal_boundary_tensor)
+print(horizontal_boundary_tensor.shape)
 
 # make sure random order
-
-# exit()
+exit()
 
 train_size = 0.75
 val_size = 1 - train_size
