@@ -6,3 +6,4 @@ images/
 *.npy
 
 data/
+.ipynb_checkpoints/
