@@ -11,8 +11,8 @@ def main():
     embedding = np.load('data_embedding.npy')
     one_h_image = horizontal_boundary_tensor_image()
     one_v_image = vertical_boundary_tensor_image()
-    h_predictions = compute_similar_images(one_h_image, 50, embedding)
-    v_predictions = compute_similar_images(one_v_image, 50, embedding)
+    h_predictions = compute_similar_images(one_h_image, 5, embedding)
+    v_predictions = compute_similar_images(one_v_image, 5, embedding)
     print(h_predictions)
     print(v_predictions)
     

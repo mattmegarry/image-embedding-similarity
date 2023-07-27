@@ -15,10 +15,12 @@ def compute_similar_images(image, num_images, embedding):
     device : "cuda" or "cpu" device.
     """
 
+    # Load pretrained encoder 
     encoder = ConvEncoder()
+    encoder.load_state_dict(torch.load("encoder_model.pt"))
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     encoder.to(device)
-    
+        
     """ image_tensor = T.ToTensor()(image) """
     image_tensor = image
     image_tensor = image_tensor.unsqueeze(0) 
