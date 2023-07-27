@@ -17,7 +17,7 @@ from image_similarity_embedding import create_embedding
 
 from utils import horizontal_boundary_tensor_image, vertical_boundary_tensor_image
 
-""" transforms = T.Compose([T.ToTensor()]) # Normalize the pixels and convert to tensor.
+transforms = T.Compose([T.ToTensor()]) # Normalize the pixels and convert to tensor.
 
 full_dataset = FolderDataset("../images/", transforms) # Create folder dataset.
 print(type(full_dataset))
@@ -38,9 +38,9 @@ print(f"channels: {tensor.shape[0]}")
 print(f"vertical_pixels: {tensor.shape[1]}")
 print(f"horizontal_pixels: {tensor.shape[2]}")
 
-print(f"Each element is itself a {type(tensor[0][0][0])} and inside is a {type(tensor[0][0][0].item())}") """
+print(f"Each element is itself a {type(tensor[0][0][0])} and inside is a {type(tensor[0][0][0].item())}")
 
-h_boundary_image_ref = [[   [1, 1, 1], 
+""" h_boundary_image_ref = [[   [1, 1, 1], 
                             [1, 1, 1],
                             [0, 0, 0]   ]]
 
@@ -70,12 +70,12 @@ print(vertical_boundary_tensor)
 print(vertical_boundary_tensor.shape)
 
 print(horizontal_boundary_tensor)
-print(horizontal_boundary_tensor.shape)
+print(horizontal_boundary_tensor.shape) """
 
 # make sure random order
 # exit()
 
-full_dataset = DummyDataset()
+# full_dataset = DummyDataset()
 
 train_size = 0.75
 val_size = 1 - train_size
