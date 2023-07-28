@@ -19,7 +19,7 @@ from utils import horizontal_boundary_tensor_image, vertical_boundary_tensor_ima
 
 transforms = T.Compose([T.ToTensor()]) # Normalize the pixels and convert to tensor.
 
-full_dataset = FolderDataset("../images/", transforms) # Create folder dataset.
+full_dataset = FolderDataset("../face-images/", transforms) # Create folder dataset.
 print(type(full_dataset))
 
 image_to_show = 0
@@ -108,7 +108,7 @@ autoencoder_params = list(encoder.parameters()) + list(decoder.parameters())
 optimizer = optim.Adam(autoencoder_params, lr=1e-3) # Adam Optimizer
 
 # Time to Train !!!
-EPOCHS = 5
+EPOCHS = 1
 max_loss = float('inf')
 # Usual Training Loop
 for epoch in tqdm(range(EPOCHS)):
@@ -126,6 +126,7 @@ for epoch in tqdm(range(EPOCHS)):
             max_loss = val_loss
             torch.save(encoder.state_dict(), "encoder_model.pt")
             torch.save(decoder.state_dict(), "decoder_model.pt")
+            print(encoder.state_dict())
 
 # Save the feature representations.
 EMBEDDING_SHAPE = (1, 256, 8, 8) # This we know from our encoder - I changed this to 8 from 16 - why did that work!?

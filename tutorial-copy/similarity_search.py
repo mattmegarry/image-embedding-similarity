@@ -9,10 +9,10 @@ from image_similarity_dataset import FolderDataset
 
 def main():
     embedding = np.load('data_embedding.npy')
-    image = Image.open('../images/obama_1.jpg').convert('L')
+    image = Image.open('../face-images/obama_1.jpg').convert('L')
     image = horizontal_boundary_tensor_image()
     indices_list = compute_similar_images(image, 10, embedding)
-    dataset = FolderDataset('../images/')
+    dataset = FolderDataset('../face-images/')
     for i in indices_list[0]:
         print(dataset.all_imgs[i])
 
