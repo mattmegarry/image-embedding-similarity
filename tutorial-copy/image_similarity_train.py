@@ -126,7 +126,12 @@ for epoch in tqdm(range(EPOCHS)):
             max_loss = val_loss
             torch.save(encoder.state_dict(), "encoder_model.pt")
             torch.save(decoder.state_dict(), "decoder_model.pt")
-            print(encoder.state_dict())
+
+# Understand encoder model data structure            
+encoder_dict = encoder.state_dict()
+for key in encoder_dict:
+    print(key)
+    print(encoder_dict[key].shape)
 
 # Save the feature representations.
 EMBEDDING_SHAPE = (1, 256, 8, 8) # This we know from our encoder - I changed this to 8 from 16 - why did that work!?
